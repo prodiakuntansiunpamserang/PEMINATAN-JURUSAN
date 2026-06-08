@@ -146,6 +146,55 @@ font-size:18px;
 margin-top:20px;
 }
 
+/* RESPONSIVE HP */
+@media (max-width:768px){
+
+.container{
+padding:25px;
+}
+
+.logo{
+width:80px;
+}
+
+h1{
+font-size:32px;
+line-height:1.2;
+}
+
+h2{
+font-size:20px;
+line-height:1.4;
+}
+
+.login-title{
+font-size:22px;
+}
+
+p{
+font-size:16px;
+line-height:1.6;
+}
+
+button{
+font-size:16px;
+padding:12px;
+}
+
+.card{
+padding:15px;
+}
+
+.dosen-box{
+padding:15px;
+}
+
+.dosen-box li{
+font-size:14px;
+}
+
+}
+
 </style>
 </head>
 
@@ -330,9 +379,19 @@ document.getElementById("page2").style.display="block";
 
 document.getElementById("welcome").innerHTML=
 `
-Selamat Datang,<br>
-<b>${nama}</b><br>
+👋 Selamat Datang
+
+<br><br>
+
+<b>${nama}</b>
+
+<br>
+
 NIM : ${nim}
+
+<br><br>
+
+Portal Peminatan KBK Akuntansi
 `;
 }
 
