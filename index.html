@@ -180,6 +180,11 @@ type="text"
 id="nama"
 placeholder="Masukkan Nama Lengkap">
 
+<input
+type="text"
+id="nim"
+placeholder="Masukkan NIM">
+
 <button onclick="login()">
 LOGIN
 </button>
@@ -313,9 +318,10 @@ SAYA SUDAH MENGISI FORM
 function login(){
 
 let nama=document.getElementById("nama").value;
+let nim=document.getElementById("nim").value;
 
-if(nama==""){
-alert("Masukkan nama terlebih dahulu");
+if(nama=="" || nim==""){
+alert("Nama dan NIM wajib diisi");
 return;
 }
 
@@ -323,7 +329,11 @@ document.getElementById("login").style.display="none";
 document.getElementById("page2").style.display="block";
 
 document.getElementById("welcome").innerHTML=
-"Selamat Datang, <b>"+nama+"</b>";
+`
+Selamat Datang,<br>
+<b>${nama}</b><br>
+NIM : ${nim}
+`;
 }
 
 function lanjut(){
