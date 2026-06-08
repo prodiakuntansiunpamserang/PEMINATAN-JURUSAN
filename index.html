@@ -196,7 +196,7 @@ Saya telah membaca seluruh informasi peminatan
 <button class="next-btn" onclick="lanjut()">
 LANJUT KE FORM
 </button>
-
+<div id="formContainer"></div>
 <div id="hasil"></div>
 
 </div>
@@ -228,11 +228,16 @@ alert("Silakan centang konfirmasi terlebih dahulu");
 return;
 }
 
-window.location.href =
-"https://form.everestwebdeals.co/?form=6e5786d36a7ec531be9f5d6349a02efb";
+document.getElementById("formContainer").innerHTML = `
+<iframe
+src="https://form.everestwebdeals.co/?form=6e5786d36a7ec531be9f5d6349a02efb"
+width="100%"
+height="900"
+style="border:none;border-radius:15px;margin-top:20px;">
+</iframe>
+`;
 
 }
-
 </script>
 
 </body>
