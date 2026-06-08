@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Portal Peminatan Jurusan</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:#1565c0;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+padding:20px;
+}
+
+.container{
+background:white;
+width:100%;
+max-width:1000px;
+border-radius:20px;
+padding:50px;
+box-shadow:0 15px 40px rgba(0,0,0,0.2);
+text-align:center;
+}
+
+.logo{
+width:120px;
+margin-bottom:20px;
+}
+
+h1{
+color:#0d47a1;
+font-size:48px;
+margin-bottom:10px;
+}
+
+h2{
+color:#333;
+margin-bottom:25px;
+}
+
+p{
+color:#666;
+line-height:1.8;
+margin-bottom:15px;
+}
+
+hr{
+margin:30px 0;
+}
+
+.login-title{
+font-size:28px;
+font-weight:bold;
+color:#1565c0;
+margin-bottom:25px;
+}
+
+input{
+width:100%;
+padding:15px;
+border:1px solid #ccc;
+border-radius:10px;
+margin-bottom:15px;
+font-size:16px;
+}
+
+button{
+width:100%;
+padding:15px;
+border:none;
+background:#1565c0;
+color:white;
+font-size:18px;
+font-weight:bold;
+border-radius:10px;
+cursor:pointer;
+}
+
+button:hover{
+background:#0d47a1;
+}
+
+#dashboard{
+display:none;
+text-align:left;
+}
+
+.card{
+background:#f7f9fc;
+padding:20px;
+border-radius:15px;
+margin-top:15px;
+border-left:6px solid #1565c0;
+}
+
+.card h3{
+margin-bottom:10px;
+color:#1565c0;
+}
+
+.checkbox{
+margin-top:30px;
+font-size:18px;
+}
+
+.next-btn{
+margin-top:20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<img src="https://tse4.mm.bing.net/th/id/OIP.mKfRX_gXt030Wq0EELn2QwHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" class="logo">
+
+<div id="login">
+
+<h1>PORTAL PEMINATAN JURUSAN</h1>
+
+<h2>PROGRAM STUDI AKUNTANSI UNPAM SERANG</h2>
+
+<p>
+Selamat Datang Mahasiswa Program Studi Akuntansi.
+</p>
+
+<p>
+Silakan login untuk melanjutkan proses pemilihan peminatan.
+</p>
+
+<hr>
+
+<div class="login-title">
+Login Peserta
+</div>
+
+<input
+type="text"
+id="nama"
+placeholder="Masukkan Nama Lengkap">
+
+<button onclick="login()">
+LOGIN
+</button>
+
+</div>
+
+<div id="dashboard">
+
+<h2 id="welcome"></h2>
+
+<p>
+Silakan membaca seluruh informasi peminatan berikut sebelum melanjutkan.
+</p>
+
+<div class="card">
+<h3>📊 Akuntansi Keuangan</h3>
+<p>
+Fokus pada laporan keuangan, analisis keuangan, dan manajemen keuangan perusahaan.
+</p>
+</div>
+
+<div class="card">
+<h3>🧾 Perpajakan</h3>
+<p>
+Fokus pada perhitungan, pelaporan, dan konsultasi perpajakan.
+</p>
+</div>
+
+<div class="card">
+<h3>🔍 Audit</h3>
+<p>
+Fokus pada pemeriksaan laporan keuangan dan pengendalian internal.
+</p>
+</div>
+
+<div class="checkbox">
+<input type="checkbox" id="setuju">
+Saya telah membaca seluruh informasi peminatan
+</div>
+
+<button class="next-btn" onclick="lanjut()">
+LANJUT KE FORM
+</button>
+
+<div id="hasil"></div>
+
+</div>
+
+</div>
+
+<script>
+
+function login(){
+
+let nama=document.getElementById("nama").value;
+
+if(nama==""){
+alert("Masukkan nama terlebih dahulu");
+return;
+}
+
+document.getElementById("login").style.display="none";
+document.getElementById("dashboard").style.display="block";
+
+document.getElementById("welcome").innerHTML=
+"Selamat Datang, <b>"+nama+"</b>";
+}
+
+function lanjut(){
+
+if(!document.getElementById("setuju").checked){
+alert("Silakan centang konfirmasi terlebih dahulu");
+return;
+}
+
+document.getElementById("hasil").innerHTML=
+`
+<div class="card" style="margin-top:30px">
+<h3>✅ Terima Kasih</h3>
+
+<p>
+Data Anda telah berhasil dikirim.
+</p>
+
+<p>
+GOOD LUCK & SEE YOU AT THE TOP 🚀
+</p>
+</div>
+`;
+}
+
+</script>
+
+</body>
+</html>
