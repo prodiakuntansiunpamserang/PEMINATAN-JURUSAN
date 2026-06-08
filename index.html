@@ -159,7 +159,7 @@ LOGIN
 
 </div>
 
-<div id="dashboard">
+<div id="page2" style="display:none;">
 
 <h2 id="welcome"></h2>
 
@@ -199,6 +199,35 @@ LANJUT KE FORM
 <div id="formContainer"></div>
 <div id="hasil"></div>
 
+</div> <!-- tutup page2/dashboard -->
+
+<div id="page3" style="display:none;">
+
+<h2>Form Peminatan</h2>
+
+<iframe
+src="https://form.everestwebdeals.co/?form=6e5786d36a7ec531be9f5d6349a02efb"
+width="100%"
+height="900"
+style="border:none;border-radius:15px;">
+</iframe>
+
+<br><br>
+
+<button onclick="selesai()">
+SAYA SUDAH MENGISI FORM
+</button>
+
+</div>
+
+<div id="page4" style="display:none;">
+
+<h1>🎉 TERIMA KASIH</h1>
+
+<p>Data peminatan Anda telah berhasil dikirim.</p>
+
+<h2>GOOD LUCK 🚀</h2>
+
 </div>
 
 </div>
@@ -215,7 +244,7 @@ return;
 }
 
 document.getElementById("login").style.display="none";
-document.getElementById("dashboard").style.display="block";
+document.getElementById("page2").style.display="block";
 
 document.getElementById("welcome").innerHTML=
 "Selamat Datang, <b>"+nama+"</b>";
@@ -300,6 +329,12 @@ document.getElementById("formContainer").innerHTML += `
 </div>
 
 `;
+
+}
+function selesai(){
+
+document.getElementById("page3").style.display="none";
+document.getElementById("page4").style.display="block";
 
 }
 </script>
