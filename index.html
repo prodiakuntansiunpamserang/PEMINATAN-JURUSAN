@@ -430,29 +430,34 @@ let data = {
 
 console.log("DATA:", data);
 
-fetch("https://sheetdb.io/api/v1/qrn1nv8×0903e", {
+fetch("https://sheetdb.io/api/v1/qrn1nv8x0903e", {
   method: "POST",
   headers: {
     "Content-Type": "application/json"
   },
   body: JSON.stringify({
-    data: [data]
+    data: [{
+      nama: data.nama,
+      nim: data.nim,
+      kelas: data.kelas,
+      hp: data.hp,
+      ipk: data.ipk,
+      khs: data.khs,
+      regPeminatan: data.regPeminatan,
+      perpajakan1: data.perpajakan1,
+      akuntansi1: data.akuntansi1,
+      auditing1: data.auditing1
+    }]
   })
 })
 .then(res => res.json())
 .then(result => {
-  console.log("HASIL:", result);
-  alert("Data berhasil dikirim!");
-
-  document.getElementById("page3").style.display="none";
-  document.getElementById("page4").style.display="block";
+  console.log("RESPON SHEETDB:", result);
+  alert("Berhasil masuk!");
 })
 .catch(err => {
-  console.log(err);
-  alert("Error: " + err);
+  console.error("ERROR:", err);
 });
-
-}
 </script>
 
 </body>
