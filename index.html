@@ -335,17 +335,30 @@ LANJUT KE FORM
 
 <h2>Form Peminatan</h2>
 
-<iframe
-src="https://form.everestwebdeals.co/?form=6e5786d36a7ec531be9f5d6349a02efb"
-width="100%"
-height="900"
-style="border:none;border-radius:15px;">
-</iframe>
+<input type="text" id="formNama" placeholder="Nama Lengkap">
+<input type="text" id="formNim" placeholder="NIM">
+<input type="text" id="kelas" placeholder="Kelas">
+<input type="text" id="hp" placeholder="No HP">
+<input type="number" id="ipk" placeholder="IPK">
+<input type="text" id="khs" placeholder="Link KHS">
+
+<input type="text" id="regPeminatan" placeholder="REG Peminatan">
+
+<input type="text" id="ak1" placeholder="Nilai AK 1">
+<input type="text" id="ak2" placeholder="Nilai AK 2">
+
+<input type="text" id="pajak1" placeholder="Nilai Perpajakan 1">
+<input type="text" id="pajak2" placeholder="Nilai Perpajakan 2">
+
+<input type="text" id="audit1" placeholder="Nilai Auditing 1">
+<input type="text" id="audit2" placeholder="Nilai Auditing 2">
+
+<input type="text" id="alasan" placeholder="Alasan memilih peminatan">
 
 <br><br>
 
-<button onclick="selesai()">
-SAYA SUDAH MENGISI FORM
+<button onclick="kirimData()">
+KIRIM DATA
 </button>
 
 </div>
@@ -407,10 +420,34 @@ document.getElementById("page3").style.display="block";
 
 }
 
-function selesai(){
+function kirimData(){
 
+fetch("https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnQu-1yRQfFXrmR-A33IYAP_jxzr32_6S8bOlHfZCsBNTXDQqBqBLg-ycuRhh0FWn46GKJZPVGVuL4qmIzkMxv-CusJ-ow0xXlrr3GKvag_DMMJl5hPXtiBg39luWuSfBB4wsNvkCWyPR06gqd4b4dXb1q6wQeWXDlJHuO60etRnPUHym0lMpxJLZ25nS68IoOAiFLK_RuntdELB9vFScxsMuNYpzkQhxjVCi9OCby3c5ano704&lib=MOGL2j1WMZc_t0AD7eJpBUI8lGFZgu9pP",{
+method:"POST",
+body:JSON.stringify({
+nama:document.getElementById("formNama").value,
+nim:document.getElementById("formNim").value,
+kelas:document.getElementById("kelas").value,
+hp:document.getElementById("hp").value,
+ipk:document.getElementById("ipk").value,
+khs:document.getElementById("khs").value,
+regPeminatan:document.getElementById("regPeminatan").value,
+ak1:document.getElementById("ak1").value,
+ak2:document.getElementById("ak2").value,
+pajak1:document.getElementById("pajak1").value,
+pajak2:document.getElementById("pajak2").value,
+audit1:document.getElementById("audit1").value,
+audit2:document.getElementById("audit2").value,
+alasan:document.getElementById("alasan").value
+})
+})
+.then(response => response.json())
+.then(data => {
+if(data.status=="success"){
 document.getElementById("page3").style.display="none";
 document.getElementById("page4").style.display="block";
+}
+});
 
 }
 </script>
