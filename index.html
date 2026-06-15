@@ -415,9 +415,7 @@ document.getElementById("page3").style.display="block";
 
 function kirimData(){
 
-fetch("https://script.google.com/macros/s/AKfycbzAOZKCsd94Lz41UnE-Xu_UxT9jo2VauJVZtezfHykCdxwGBMLR-FuYXeU_rgvw6R_J/exec",{
-method:"POST",
-body:JSON.stringify({
+let data = {
 nama:document.getElementById("formNama").value,
 nim:document.getElementById("formNim").value,
 kelas:document.getElementById("kelas").value,
@@ -425,21 +423,26 @@ hp:document.getElementById("hp").value,
 ipk:document.getElementById("ipk").value,
 khs:document.getElementById("khs").value,
 regPeminatan:document.getElementById("regPeminatan").value,
-ak1:document.getElementById("ak1").value,
-ak2:document.getElementById("ak2").value,
-pajak1:document.getElementById("pajak1").value,
-pajak2:document.getElementById("pajak2").value,
-audit1:document.getElementById("audit1").value,
-audit2:document.getElementById("audit2").value,
-alasan:document.getElementById("alasan").value
+perpajakan1:document.getElementById("perpajakan1").value,
+akuntansi1:document.getElementById("akuntansi1").value,
+auditing1:document.getElementById("auditing1").value
+};
+
+console.log("DATA YANG DIKIRIM:", data);
+alert("Mulai kirim data...");
+
+fetch("https://script.google.com/macros/s/AKfycbzAOZKCsd94Lz41UnE-Xu_UxT9jo2VauJVZtezfHykCdxwGBMLR-FuYXeU_rgvw/exec"
+method:"POST",
+body:JSON.stringify(data)
 })
+.then(res => res.text())
+.then(result => {
+console.log("HASIL:", result);
+alert("Data berhasil dikirim!");
 })
-.then(response => response.json())
-.then(data => {
-if(data.status=="success"){
-document.getElementById("page3").style.display="none";
-document.getElementById("page4").style.display="block";
-}
+.catch(err => {
+console.log("ERROR:", err);
+alert("Error: " + err);
 });
 
 }
