@@ -428,21 +428,30 @@ let data = {
   auditing1: document.getElementById("auditing1").value
 };
 
+console.log("DATA DIKIRIM:", data);
+
 fetch("https://script.google.com/macros/s/AKfycbzAOZKCsd94Lz41UnE-Xu_UxT9jo2VauJVZtezfHykCdxwGBMLR-FuYXeU_rgvw6R_J/exec", {
   method: "POST",
-  mode: "no-cors",
   headers: {
     "Content-Type": "application/json"
   },
   body: JSON.stringify(data)
 })
-.then(() => {
-  alert("Data berhasil dikirim!");
-  document.getElementById("page3").style.display="none";
-  document.getElementById("page4").style.display="block";
+.then(res => res.json())
+.then(result => {
+  console.log("RESPON APPS SCRIPT:", result);
+  alert("Status: " + result.status);
+
+  if(result.status === "success"){
+    document.getElementById("page3").style.display = "none";
+    document.getElementById("page4").style.display = "block";
+  } else {
+    alert("Error Apps Script: " + result.message);
+  }
 })
 .catch(err => {
-  alert("Error: " + err);
+  console.log("FETCH ERROR:", err);
+  alert("Fetch Error: " + err);
 });
 
 }
