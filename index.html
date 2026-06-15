@@ -351,6 +351,7 @@ LANJUT KE FORM
 <input type="text" id="hp" placeholder="No HP">
 <input type="number" id="ipk" placeholder="IPK">
 <input type="text" id="khs" placeholder="Link KHS">
+<input type="text" id="suratPernyataan" placeholder="Link Drive Surat Pernyataan (akses publik)">
 
 <label>REGULER</label>
 <select id="regPeminatan" onchange="updatePrasyarat()">
@@ -505,6 +506,7 @@ let data = {
   hp: document.getElementById("hp").value,
   ipk: document.getElementById("ipk").value,
   khs: document.getElementById("khs").value,
+  suratPernyataan: document.getElementById("suratPernyataan").value,
   regPeminatan: document.getElementById("regPeminatan").value,
   perpajakan1: document.getElementById("perpajakan1").value,
   akuntansi1: document.getElementById("akuntansi1").value,
@@ -528,6 +530,7 @@ fetch("https://sheetdb.io/api/v1/qrn1nv8x0903e", {
     hp: data.hp,
     ipk: data.ipk,
     khs: data.khs,
+    suratPernyataan: data.suratPernyataan,
     regPeminatan: data.regPeminatan,
     perpajakan1: data.perpajakan1,
     akuntansi1: data.akuntansi1,
