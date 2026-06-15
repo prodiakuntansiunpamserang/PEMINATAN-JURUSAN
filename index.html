@@ -352,7 +352,13 @@ LANJUT KE FORM
 <input type="number" id="ipk" placeholder="IPK">
 <input type="text" id="khs" placeholder="Link KHS">
 
-<input type="text" id="regPeminatan" placeholder="REG Peminatan">
+<label>REG Peminatan</label>
+<select id="regPeminatan" onchange="updatePrasyarat()">
+  <option value="">Pilih REG</option>
+  <option value="A">REG A</option>
+  <option value="B">REG B</option>
+  <option value="C">REG C</option>
+</select>
 
 <label>Akuntansi Keuangan 1</label>
 <select id="akuntansi1">
@@ -381,17 +387,6 @@ LANJUT KE FORM
 <label>Prasyarat</label>
 <select id="prasyarat">
   <option value="">Pilih Prasyarat</option>
-
-  <option value="REG A - Keuangan">REG A - Keuangan</option>
-  <option value="REG A - Pajak">REG A - Pajak</option>
-  <option value="REG A - Audit">REG A - Audit</option>
-
-  <option value="REG B - Audit">REG B - Audit</option>
-  <option value="REG B - Pajak">REG B - Pajak</option>
-
-  <option value="REG C - Keuangan">REG C - Keuangan</option>
-  <option value="REG C - Audit">REG C - Audit</option>
-  <option value="REG C - Pajak">REG C - Pajak</option>
 </select>
 
 <br><br>
@@ -456,6 +451,38 @@ return;
 
 document.getElementById("page2").style.display="none";
 document.getElementById("page3").style.display="block";
+
+}
+
+function updatePrasyarat(){
+
+let reg = document.getElementById("regPeminatan").value;
+let prasyarat = document.getElementById("prasyarat");
+
+prasyarat.innerHTML = '<option value="">Pilih Prasyarat</option>';
+
+if(reg == "A"){
+  prasyarat.innerHTML += `
+    <option value="REG A - Keuangan">REG A - Keuangan</option>
+    <option value="REG A - Pajak">REG A - Pajak</option>
+    <option value="REG A - Audit">REG A - Audit</option>
+  `;
+}
+
+if(reg == "B"){
+  prasyarat.innerHTML += `
+    <option value="REG B - Audit">REG B - Audit</option>
+    <option value="REG B - Pajak">REG B - Pajak</option>
+  `;
+}
+
+if(reg == "C"){
+  prasyarat.innerHTML += `
+    <option value="REG C - Keuangan">REG C - Keuangan</option>
+    <option value="REG C - Audit">REG C - Audit</option>
+    <option value="REG C - Pajak">REG C - Pajak</option>
+  `;
+}
 
 }
 
