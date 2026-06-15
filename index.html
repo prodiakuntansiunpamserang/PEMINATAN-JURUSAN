@@ -377,6 +377,23 @@ LANJUT KE FORM
   <option value="A-">A-</option>
   <option value="B+">B+</option>
 </select>
+
+<label>Prasyarat</label>
+<select id="prasyarat">
+  <option value="">Pilih Prasyarat</option>
+
+  <option value="REG A - Keuangan">REG A - Keuangan</option>
+  <option value="REG A - Pajak">REG A - Pajak</option>
+  <option value="REG A - Audit">REG A - Audit</option>
+
+  <option value="REG B - Audit">REG B - Audit</option>
+  <option value="REG B - Pajak">REG B - Pajak</option>
+
+  <option value="REG C - Keuangan">REG C - Keuangan</option>
+  <option value="REG C - Audit">REG C - Audit</option>
+  <option value="REG C - Pajak">REG C - Pajak</option>
+</select>
+
 <br><br>
 
 <button onclick="kirimData()">
@@ -455,6 +472,7 @@ let data = {
   perpajakan1: document.getElementById("perpajakan1").value,
   akuntansi1: document.getElementById("akuntansi1").value,
   auditing1: document.getElementById("auditing1").value
+  prasyarat: document.getElementById("prasyarat").value
 };
 
 console.log("DATA:", data);
