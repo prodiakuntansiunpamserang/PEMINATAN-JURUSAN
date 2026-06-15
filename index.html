@@ -471,7 +471,7 @@ let data = {
   regPeminatan: document.getElementById("regPeminatan").value,
   perpajakan1: document.getElementById("perpajakan1").value,
   akuntansi1: document.getElementById("akuntansi1").value,
-  auditing1: document.getElementById("auditing1").value
+  auditing1: document.getElementById("auditing1").value,
   prasyarat: document.getElementById("prasyarat").value
 };
 
@@ -483,19 +483,20 @@ fetch("https://sheetdb.io/api/v1/qrn1nv8x0903e", {
     "Content-Type": "application/json"
   },
   body: JSON.stringify({
-    data: [{
-      nama: data.nama,
-      nim: data.nim,
-      kelas: data.kelas,
-      hp: data.hp,
-      ipk: data.ipk,
-      khs: data.khs,
-      regPeminatan: data.regPeminatan,
-      perpajakan1: data.perpajakan1,
-      akuntansi1: data.akuntansi1,
-      auditing1: data.auditing1
-    }]
-  })
+  data: [{
+    nama: data.nama,
+    nim: data.nim,
+    kelas: data.kelas,
+    hp: data.hp,
+    ipk: data.ipk,
+    khs: data.khs,
+    regPeminatan: data.regPeminatan,
+    perpajakan1: data.perpajakan1,
+    akuntansi1: data.akuntansi1,
+    auditing1: data.auditing1,
+    prasyarat: data.prasyarat
+  }]
+})
 })
 .then(res => res.json())
 .then(result => {
