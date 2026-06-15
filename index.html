@@ -405,7 +405,7 @@ LANJUT KE FORM
 </select>
 
 <label>Prasyarat</label>
-<select id="prasyarat">
+<select id="prasyarat" onchange="validasiPrasyarat()">
   <option value="">Pilih Prasyarat</option>
 </select>
 
@@ -507,6 +507,20 @@ if(reg == "C"){
   `;
 }
 
+}
+
+function validasiPrasyarat(){
+  let nilaiAkuntansi = document.getElementById("akuntansi1").value;
+  let prasyarat = document.getElementById("prasyarat").value;
+
+  if(
+    (nilaiAkuntansi == "B" || nilaiAkuntansi == "C+" || nilaiAkuntansi == "C")
+    &&
+    (prasyarat == "REG A - Keuangan" || prasyarat == "REG C - Keuangan")
+  ){
+    alert("Nilai mata kuliah tidak memenuhi prasyarat peminatan Keuangan");
+    document.getElementById("prasyarat").value = "";
+  }
 }
 
 function kirimData(){
