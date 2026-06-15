@@ -431,14 +431,20 @@ auditing1:document.getElementById("auditing1").value
 console.log("DATA YANG DIKIRIM:", data);
 alert("Mulai kirim data...");
 
-fetch("https://script.google.com/macros/s/AKfycbzAOZKCsd94Lz41UnE-Xu_UxT9jo2VauJVZtezfHykCdxwGBMLR-FuYXeU_rgvw/exec"
+fetch("https://script.google.com/macros/s/AKfycbzAOZKCsd94Lz41UnE-Xu_UxT9jo2VauJVZtezfHykCdxwGBMLR-FuYXeU_rgvw/exec", {
 method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
 body:JSON.stringify(data)
 })
 .then(res => res.text())
 .then(result => {
 console.log("HASIL:", result);
 alert("Data berhasil dikirim!");
+
+document.getElementById("page3").style.display="none";
+document.getElementById("page4").style.display="block";
 })
 .catch(err => {
 console.log("ERROR:", err);
