@@ -428,30 +428,28 @@ let data = {
   auditing1: document.getElementById("auditing1").value
 };
 
-console.log("DATA DIKIRIM:", data);
+console.log("DATA:", data);
 
-fetch("https://script.google.com/macros/s/AKfycbzAOZKCsd94Lz41UnE-Xu_UxT9jo2VauJVZtezfHykCdxwGBMLR-FuYXeU_rgvw6R_J/exec", {
+fetch("https://sheetdb.io/api/v1/qrn1nv8×0903e", {
   method: "POST",
   headers: {
     "Content-Type": "application/json"
   },
-  body: JSON.stringify(data)
+  body: JSON.stringify({
+    data: [data]
+  })
 })
 .then(res => res.json())
 .then(result => {
-  console.log("RESPON APPS SCRIPT:", result);
-  alert("Status: " + result.status);
+  console.log("HASIL:", result);
+  alert("Data berhasil dikirim!");
 
-  if(result.status === "success"){
-    document.getElementById("page3").style.display = "none";
-    document.getElementById("page4").style.display = "block";
-  } else {
-    alert("Error Apps Script: " + result.message);
-  }
+  document.getElementById("page3").style.display="none";
+  document.getElementById("page4").style.display="block";
 })
 .catch(err => {
-  console.log("FETCH ERROR:", err);
-  alert("Fetch Error: " + err);
+  console.log(err);
+  alert("Error: " + err);
 });
 
 }
