@@ -86,6 +86,16 @@ font-size:16px;
 background:white;
 }
 
+textarea{
+width:100%;
+padding:15px;
+border:1px solid #ccc;
+border-radius:10px;
+margin-bottom:15px;
+font-size:16px;
+resize:none;
+}
+
 button{
 width:100%;
 padding:15px;
@@ -399,6 +409,9 @@ LANJUT KE FORM
   <option value="">Pilih Prasyarat</option>
 </select>
 
+<label>Alasan Memilih Peminatan</label>
+<textarea id="alasanmemilih" placeholder="Tulis alasan memilih peminatan..." rows="4"></textarea>
+
 <br><br>
 
 <button onclick="kirimData()">
@@ -511,7 +524,8 @@ let data = {
   perpajakan1: document.getElementById("perpajakan1").value,
   akuntansi1: document.getElementById("akuntansi1").value,
   auditing1: document.getElementById("auditing1").value,
-  prasyarat: document.getElementById("prasyarat").value
+  prasyarat: document.getElementById("prasyarat").value,
+  alasanmemilih: document.getElementById("alasanmemilih").value
 };
 
 console.log("DATA:", data);
@@ -535,7 +549,8 @@ fetch("https://sheetdb.io/api/v1/qrn1nv8x0903e", {
     perpajakan1: data.perpajakan1,
     akuntansi1: data.akuntansi1,
     auditing1: data.auditing1,
-    prasyarat: data.prasyarat
+    prasyarat: data.prasyarat,
+    alasanmemilih: data.alasanmemilih
   }]
 })
 })
