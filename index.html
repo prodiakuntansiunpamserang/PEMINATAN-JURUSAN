@@ -620,8 +620,6 @@ let data = {
   alasanmemilih: document.getElementById("alasanmemilih").value
 };
 
-setInterval(loadKuota, 5000);
-
 console.log("DATA:", data);
 
 let batas = {
@@ -689,6 +687,11 @@ fetch("https://sheetdb.io/api/v1/qrn1nv8x0903e", {
 .catch(err => {
   console.error("ERROR CEK KUOTA:", err);
 });
+
+}
+
+loadKuota();
+setInterval(loadKuota, 5000);
 
 </script>
 
