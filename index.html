@@ -412,6 +412,8 @@ LANJUT KE FORM
 <label>Alasan Memilih Peminatan</label>
 <textarea id="alasanmemilih" placeholder="Tulis alasan memilih peminatan..." rows="4"></textarea>
 
+<div id="kuota"></div>
+
 <br><br>
 
 <button onclick="kirimData()">
@@ -475,6 +477,8 @@ return;
 document.getElementById("page2").style.display="none";
 document.getElementById("page3").style.display="block";
 
+loadKuota();
+
 }
 
 function updatePrasyarat(){
@@ -510,9 +514,13 @@ if(reg == "C"){
 }
 
 function validasiPrasyarat(){
+
   let nilaiAkuntansi = document.getElementById("akuntansi1").value;
+  let nilaiPajak = document.getElementById("perpajakan1").value;
+  let nilaiAudit = document.getElementById("auditing1").value;
   let prasyarat = document.getElementById("prasyarat").value;
 
+  // VALIDASI KEUANGAN
   if(
     (nilaiAkuntansi == "B" || nilaiAkuntansi == "C+" || nilaiAkuntansi == "C")
     &&
@@ -521,6 +529,76 @@ function validasiPrasyarat(){
     alert("Nilai mata kuliah tidak memenuhi prasyarat peminatan Keuangan");
     document.getElementById("prasyarat").value = "";
   }
+
+  // VALIDASI PAJAK
+  if(
+    (nilaiPajak == "B" || nilaiPajak == "C+" || nilaiPajak == "C")
+    &&
+    (
+      prasyarat == "REG A - Pajak" ||
+      prasyarat == "REG B - Pajak" ||
+      prasyarat == "REG C - Pajak"
+    )
+  ){
+    alert("Nilai mata kuliah tidak memenuhi prasyarat peminatan Pajak");
+    document.getElementById("prasyarat").value = "";
+  }
+
+  // VALIDASI AUDIT
+  if(
+    (nilaiAudit == "B" || nilaiAudit == "C+" || nilaiAudit == "C")
+    &&
+    (
+      prasyarat == "REG A - Audit" ||
+      prasyarat == "REG B - Audit" ||
+      prasyarat == "REG C - Audit"
+    )
+  ){
+    alert("Nilai mata kuliah tidak memenuhi prasyarat peminatan Audit");
+    document.getElementById("prasyarat").value = "";
+  }
+
+}
+
+function loadKuota(){
+
+fetch("https://sheetdb.io/api/v1/qrn1nv8x0903e")
+.then(res => res.json())
+.then(data => {
+
+let total = {
+  "REG A - Keuangan":0,
+  "REG A - Pajak":0,
+  "REG A - Audit":0,
+  "REG B - Audit":0,
+  "REG B - Pajak":0,
+  "REG C - Keuangan":0,
+  "REG C - Audit":0,
+  "REG C - Pajak":0
+};
+
+data.forEach(item=>{
+  if(total[item.prasyarat] != undefined){
+    total[item.prasyarat]++;
+  }
+});
+
+document.getElementById("kuota").innerHTML = `
+<h3>📊 Kuota Peminatan</h3>
+
+<p>REG A - Keuangan : ${total["REG A - Keuangan"]}/56</p>
+<p>REG A - Pajak : ${total["REG A - Pajak"]}/56</p>
+<p>REG A - Audit : ${total["REG A - Audit"]}/55</p>
+
+<p>REG B - Audit : ${total["REG B - Audit"]}/25</p>
+<p>REG B - Pajak : ${total["REG B - Pajak"]}/25</p>
+
+<p>REG C - Keuangan : ${total["REG C - Keuangan"]}/50</p>
+<p>REG C - Audit : ${total["REG C - Audit"]}/25</p>
+<p>REG C - Pajak : ${total["REG C - Pajak"]}/52</p>
+`;
+
+});
 }
 
 function kirimData(){
@@ -542,7 +620,31 @@ let data = {
   alasanmemilih: document.getElementById("alasanmemilih").value
 };
 
+setInterval(loadKuota, 5000);
+
 console.log("DATA:", data);
+
+let batas = {
+  "REG A - Keuangan":56,
+  "REG A - Pajak":56,
+  "REG A - Audit":55,
+  "REG B - Audit":25,
+  "REG B - Pajak":25,
+  "REG C - Keuangan":50,
+  "REG C - Audit":25,
+  "REG C - Pajak":52
+};
+
+fetch("https://sheetdb.io/api/v1/qrn1nv8x0903e")
+.then(res => res.json())
+.then(allData => {
+
+let jumlah = allData.filter(item => item.prasyarat == data.prasyarat).length;
+
+if(jumlah >= batas[data.prasyarat]){
+  alert("Maaf, kuota untuk " + data.prasyarat + " sudah penuh.");
+  return;
+}
 
 fetch("https://sheetdb.io/api/v1/qrn1nv8x0903e", {
   method: "POST",
@@ -571,6 +673,9 @@ fetch("https://sheetdb.io/api/v1/qrn1nv8x0903e", {
 .then(res => res.json())
 .then(result => {
   console.log("RESPON SHEETDB:", result);
+
+  loadKuota();
+
   alert("Data berhasil dikirim!");
 
   document.getElementById("page3").style.display="none";
@@ -580,7 +685,11 @@ fetch("https://sheetdb.io/api/v1/qrn1nv8x0903e", {
   console.error("ERROR:", err);
 });
 
-}
+})
+.catch(err => {
+  console.error("ERROR CEK KUOTA:", err);
+});
+
 </script>
 
 </body>
