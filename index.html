@@ -637,6 +637,13 @@ fetch("https://sheetdb.io/api/v1/qrn1nv8x0903e")
 .then(res => res.json())
 .then(allData => {
 
+let cekNim = allData.find(item => item.nim == data.nim);
+
+if(cekNim){
+  alert("NIM ini sudah pernah mengirim data dan tidak bisa submit lagi.");
+  return;
+}
+
 let jumlah = allData.filter(item => item.prasyarat == data.prasyarat).length;
 
 if(jumlah >= batas[data.prasyarat]){
