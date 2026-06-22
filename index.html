@@ -355,6 +355,14 @@ LANJUT KE FORM
 
 <h2>Form Peminatan</h2>
 
+<div id="kuota" style="
+background:#f5f9ff;
+padding:20px;
+border-radius:12px;
+margin-bottom:20px;
+border-left:5px solid #1565c0;
+"></div>
+
 <input type="text" id="formNama" placeholder="Nama Lengkap">
 <input type="text" id="formNim" placeholder="NIM">
 <input type="text" id="kelas" placeholder="Kelas">
@@ -484,6 +492,12 @@ document.getElementById("formNim").value =
 document.getElementById("nim").value;
 
 loadKuota();
+let kuotaBox = document.getElementById("kuota");
+if(!kuotaBox) return;
+
+fetch("https://sheetdb.io/api/v1/qrn1nv8x0903e")
+.then(res => res.json())
+.then(data => {
 
 }
 
