@@ -420,8 +420,6 @@ border-left:5px solid #1565c0;
 <label>Alasan Memilih Peminatan</label>
 <textarea id="alasanmemilih" placeholder="Tulis alasan memilih peminatan..." rows="4"></textarea>
 
-<div id="kuota"></div>
-
 <br><br>
 
 <button onclick="kirimData()">
@@ -582,7 +580,6 @@ function validasiPrasyarat(){
 }
 
 function loadKuota(){
-
 fetch("https://sheetdb.io/api/v1/qrn1nv8x0903e")
 .then(res => res.json())
 .then(data => {
@@ -606,20 +603,18 @@ data.forEach(item=>{
 
 document.getElementById("kuota").innerHTML = `
 <h3>📊 Kuota Peminatan</h3>
-
 <p>REG A - Keuangan : ${total["REG A - Keuangan"]}/56</p>
 <p>REG A - Pajak : ${total["REG A - Pajak"]}/56</p>
 <p>REG A - Audit : ${total["REG A - Audit"]}/55</p>
-
 <p>REG B - Audit : ${total["REG B - Audit"]}/25</p>
 <p>REG B - Pajak : ${total["REG B - Pajak"]}/25</p>
-
 <p>REG C - Keuangan : ${total["REG C - Keuangan"]}/50</p>
 <p>REG C - Audit : ${total["REG C - Audit"]}/25</p>
 <p>REG C - Pajak : ${total["REG C - Pajak"]}/52</p>
 `;
 
-});
+})
+.catch(err => console.log(err));
 }
 
 function kirimData(){
@@ -642,6 +637,22 @@ let data = {
 };
 
 console.log("DATA:", data);
+
+if(!data.prasyarat){
+  alert("Pilih peminatan dulu");
+  return;
+}
+
+if(
+!data.nama || !data.nim || !data.kelas || !data.hp ||
+!data.ipk || !data.khs || !data.suratPernyataan ||
+!data.regPeminatan || !data.perpajakan1 ||
+!data.akuntansi1 || !data.auditing1 ||
+!data.alasanmemilih
+){
+  alert("Lengkapi semua data terlebih dahulu");
+  return;
+}
 
 let batas = {
   "REG A - Keuangan":56,
