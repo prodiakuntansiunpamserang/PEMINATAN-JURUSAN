@@ -446,11 +446,11 @@ KIRIM DATA
 
 function login(){
 
-let nama=document.getElementById("nama").value;
-let nim=document.getElementById("nim").value;
+let nama=document.getElementById("nama").value.trim();
+let nim=document.getElementById("nim").value.trim();
 
-if(nama=="" || nim==""){
-alert("Nama dan NIM wajib diisi");
+if(isNaN(nim)){
+alert("NIM harus berupa angka");
 return;
 }
 
@@ -677,23 +677,23 @@ fetch("https://sheetdb.io/api/v1/qrn1nv8x0903e", {
     "Content-Type": "application/json"
   },
   body: JSON.stringify({
-  data: [{
-    timestamp: data.timestamp,
-    nama: data.nama,
-    nim: data.nim,
-    kelas: data.kelas,
-    hp: data.hp,
-    ipk: data.ipk,
-    khs: data.khs,
-    suratPernyataan: data.suratPernyataan,
-    regPeminatan: data.regPeminatan,
-    perpajakan1: data.perpajakan1,
-    akuntansi1: data.akuntansi1,
-    auditing1: data.auditing1,
-    prasyarat: data.prasyarat,
-    alasanmemilih: data.alasanmemilih
-  }]
-})
+    data: [{
+      timestamp: data.timestamp,
+      nama: data.nama,
+      nim: data.nim,
+      kelas: data.kelas,
+      hp: data.hp,
+      ipk: data.ipk,
+      khs: data.khs,
+      suratPernyataan: data.suratPernyataan,
+      regPeminatan: data.regPeminatan,
+      perpajakan1: data.perpajakan1,
+      akuntansi1: data.akuntansi1,
+      auditing1: data.auditing1,
+      prasyarat: data.prasyarat,
+      alasanmemilih: data.alasanmemilih
+    }]
+  })
 })
 .then(res => res.json())
 .then(result => {
