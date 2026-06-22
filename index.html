@@ -370,6 +370,7 @@ border-left:5px solid #1565c0;
 <input type="number" id="ipk" placeholder="IPK">
 <input type="text" id="khs" placeholder="Link Drive KHS (akses publik)">
 <input type="text" id="suratPernyataan" placeholder="Link Drive Surat Pernyataan (akses publik)">
+<input type="text" id="suratKonsentrasi" placeholder="Link Drive Surat Keterangan Konsentrasi (akses publik)">
 
 <label>REGULER</label>
 <select id="regPeminatan" onchange="updatePrasyarat()">
@@ -628,6 +629,7 @@ let data = {
   ipk: document.getElementById("ipk").value,
   khs: document.getElementById("khs").value,
   suratPernyataan: document.getElementById("suratPernyataan").value,
+  suratKonsentrasi: document.getElementById("suratKonsentrasi").value,
   regPeminatan: document.getElementById("regPeminatan").value,
   perpajakan1: document.getElementById("perpajakan1").value,
   akuntansi1: document.getElementById("akuntansi1").value,
