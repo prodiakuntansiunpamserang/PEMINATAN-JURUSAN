@@ -491,7 +491,7 @@ document.getElementById("nim").value;
 
 loadKuota();
 
-fetch("https://sheetdb.io/api/v1/qrn1nv8x0903e")
+fetch("https://script.google.com/macros/s/AKfycbx7Bv6Em67fepU7_6b4GlHPxmauPQizFjz6YdAeWZMa91liXYQgCM57bvdhE0KlhnKW/exec")
 .then(res => res.json())
 .then(data => {
    console.log(data);
@@ -580,7 +580,7 @@ function validasiPrasyarat(){
 }
 
 function loadKuota(){
-fetch("https://sheetdb.io/api/v1/qrn1nv8x0903e")
+fetch("https://script.google.com/macros/s/AKfycbx7Bv6Em67fepU7_6b4GlHPxmauPQizFjz6YdAeWZMa91liXYQgCM57bvdhE0KlhnKW/exec")
 .then(res => res.json())
 .then(data => {
 
@@ -665,7 +665,7 @@ let batas = {
   "REG C - Pajak":52
 };
 
-fetch("https://sheetdb.io/api/v1/qrn1nv8x0903e")
+fetch("https://script.google.com/macros/s/AKfycbx7Bv6Em67fepU7_6b4GlHPxmauPQizFjz6YdAeWZMa91liXYQgCM57bvdhE0KlhnKW/exec")
 .then(res => res.json())
 .then(allData => {
 
@@ -683,12 +683,12 @@ if(jumlah >= batas[data.prasyarat]){
   return;
 }
 
-fetch("https://sheetdb.io/api/v1/qrn1nv8x0903e", {
+fetch("https://script.google.com/macros/s/AKfycbx7Bv6Em67fepU7_6b4GlHPxmauPQizFjz6YdAeWZMa91liXYQgCM57bvdhE0KlhnKW/exec", {
   method: "POST",
   headers: {
     "Content-Type": "application/json"
   },
-  body: JSON.stringify({
+ body: JSON.stringify(data)
     data: [{
       timestamp: data.timestamp,
       nama: data.nama,
