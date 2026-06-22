@@ -477,6 +477,12 @@ return;
 document.getElementById("page2").style.display="none";
 document.getElementById("page3").style.display="block";
 
+document.getElementById("formNama").value =
+document.getElementById("nama").value;
+
+document.getElementById("formNim").value =
+document.getElementById("nim").value;
+
 loadKuota();
 
 }
@@ -696,9 +702,6 @@ fetch("https://sheetdb.io/api/v1/qrn1nv8x0903e", {
 });
 
 }
-
-loadKuota();
-setInterval(loadKuota, 5000);
 
 </script>
 
