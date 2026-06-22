@@ -636,21 +636,8 @@ let data = {
   alasanmemilih: document.getElementById("alasanmemilih").value
 };
 
-console.log("DATA:", data);
-
 if(!data.prasyarat){
   alert("Pilih peminatan dulu");
-  return;
-}
-
-if(
-!data.nama || !data.nim || !data.kelas || !data.hp ||
-!data.ipk || !data.khs || !data.suratPernyataan ||
-!data.regPeminatan || !data.perpajakan1 ||
-!data.akuntansi1 || !data.auditing1 ||
-!data.alasanmemilih
-){
-  alert("Lengkapi semua data terlebih dahulu");
   return;
 }
 
@@ -669,35 +656,17 @@ fetch("https://script.google.com/macros/s/AKfycbx7Bv6Em67fepU7_6b4GlHPxmauPQizFj
 .then(res => res.json())
 .then(allData => {
 
-let cekNim = allData.find(item => item.nim == data.nim);
-
-if(cekNim){
-  alert("NIM ini sudah pernah mengirim data dan tidak bisa submit lagi.");
-  return;
-}
-
-let jumlah = allData.filter(item => item.prasyarat == data.prasyarat).length;
-
-if(jumlah >= batas[data.prasyarat]){
-  alert("Maaf, kuota untuk " + data.prasyarat + " sudah penuh.");
-  return;
-}
-
-fetch("https://script.google.com/macros/s/AKfycbx7Bv6Em67fepU7_6b4GlHPxmauPQizFjz6YdAeWZMa91liXYQgCM57bvdhE0KlhnKW/exec")
-.then(res => res.json())
-.then(allData => {
-
   let cekNim = allData.find(item => item.nim && item.nim == data.nim);
 
   if(cekNim){
-    alert("NIM ini sudah pernah mengirim data dan tidak bisa submit lagi.");
+    alert("NIM sudah pernah submit");
     return;
   }
 
   let jumlah = allData.filter(item => item.prasyarat == data.prasyarat).length;
 
   if(jumlah >= batas[data.prasyarat]){
-    alert("Maaf, kuota untuk " + data.prasyarat + " sudah penuh.");
+    alert("Kuota penuh");
     return;
   }
 
@@ -710,20 +679,16 @@ fetch("https://script.google.com/macros/s/AKfycbx7Bv6Em67fepU7_6b4GlHPxmauPQizFj
 .then(res => res.json())
 .then(result => {
 
-  console.log("RESPON APPS SCRIPT:", result);
-
-  loadKuota();
-
   alert("Data berhasil dikirim!");
+  loadKuota();
 
   document.getElementById("page3").style.display = "none";
   document.getElementById("page4").style.display = "block";
 
 })
 .catch(err => {
-  console.error("ERROR:", err);
+  console.error(err);
 });
-
 }
 
 </script>
