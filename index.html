@@ -685,22 +685,22 @@ if(jumlah >= batas[data.prasyarat]){
 
 fetch("https://script.google.com/macros/s/AKfycbx7Bv6Em67fepU7_6b4GlHPxmauPQizFjz6YdAeWZMa91liXYQgCM57bvdhE0KlhnKW/exec", {
   method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
- body: JSON.stringify(data)  
+  body: JSON.stringify(data)
 })
 .then(res => res.json())
 .then(result => {
-  console.log("RESPON SHEETDB:", result);
+  console.log("RESPON APPS SCRIPT:", result);
 
   loadKuota();
 
   alert("Data berhasil dikirim!");
 
-  document.getElementById("page3").style.display="none";
-  document.getElementById("page4").style.display="block";
+  document.getElementById("page3").style.display = "none";
+  document.getElementById("page4").style.display = "block";
 })
+.catch(err => {
+  console.error("ERROR POST:", err);
+});
 .catch(err => {
   console.error("ERROR:", err);
 });
