@@ -688,23 +688,7 @@ fetch("https://script.google.com/macros/s/AKfycbx7Bv6Em67fepU7_6b4GlHPxmauPQizFj
   headers: {
     "Content-Type": "application/json"
   },
- body: JSON.stringify(data)
-    data: [{
-      timestamp: data.timestamp,
-      nama: data.nama,
-      nim: data.nim,
-      kelas: data.kelas,
-      hp: data.hp,
-      ipk: data.ipk,
-      khs: data.khs,
-      suratPernyataan: data.suratPernyataan,
-      regPeminatan: data.regPeminatan,
-      perpajakan1: data.perpajakan1,
-      akuntansi1: data.akuntansi1,
-      auditing1: data.auditing1,
-      prasyarat: data.prasyarat,
-      alasanmemilih: data.alasanmemilih
-    }]
+ body: JSON.stringify(data)  
   })
 })
 .then(res => res.json())
