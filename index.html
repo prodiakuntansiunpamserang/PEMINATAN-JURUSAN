@@ -215,6 +215,18 @@ font-size:14px;
 
 }
 
+#countdownBox{
+text-align:center;
+padding:40px;
+}
+
+#countdown{
+font-size:40px;
+font-weight:bold;
+color:#1565c0;
+margin-top:20px;
+}
+
 </style>
 </head>
 
@@ -224,7 +236,13 @@ font-size:14px;
 
 <img src="https://tse4.mm.bing.net/th/id/OIP.mKfRX_gXt030Wq0EELn2QwHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" class="logo">
 
-<div id="login">
+<div id="countdownBox">
+  <h1>⏳ PORTAL BELUM DIBUKA</h1>
+  <p>Pendaftaran dibuka dalam:</p>
+  <h2 id="countdown"></h2>
+</div>
+
+<div id="login" style="display:none;">
 
 <h1>PORTAL PEMINATAN JURUSAN</h1>
 
@@ -447,6 +465,11 @@ function login(){
 
 let nama=document.getElementById("nama").value.trim();
 let nim=document.getElementById("nim").value.trim();
+
+if(nama == "" || nim == ""){
+alert("Nama dan NIM wajib diisi");
+return;
+}
 
 if(isNaN(nim)){
 alert("NIM harus berupa angka");
@@ -693,6 +716,48 @@ fetch("https://script.google.com/macros/s/AKfycbx7Bv6Em67fepU7_6b4GlHPxmauPQizFj
 });
 }
 
+const bukaPortal = new Date("2026-06-25T12:00:00+07:00").getTime();
+const tutupPortal = new Date("2026-06-26T22:00:00+07:00").getTime();
+
+const timer = setInterval(function(){
+
+let sekarang = new Date().getTime();
+
+if(sekarang < bukaPortal){
+
+let selisih = bukaPortal - sekarang;
+
+let hari = Math.floor(selisih / (1000*60*60*24));
+let jam = Math.floor((selisih % (1000*60*60*24)) / (1000*60*60));
+let menit = Math.floor((selisih % (1000*60*60)) / (1000*60));
+let detik = Math.floor((selisih % (1000*60)) / 1000);
+
+document.getElementById("countdown").innerHTML =
+`${hari} Hari ${jam} Jam ${menit} Menit ${detik} Detik`;
+
+}
+
+else if(sekarang >= bukaPortal && sekarang <= tutupPortal){
+
+document.getElementById("countdownBox").style.display = "none";
+document.getElementById("login").style.display = "block";
+
+}
+
+else{
+
+clearInterval(timer);
+
+document.body.innerHTML = `
+<div class="container">
+<h1>🔒 PORTAL SUDAH DITUTUP</h1>
+<p>Waktu pengisian peminatan telah berakhir.</p>
+</div>
+`;
+
+}
+
+},1000);
 </script>
 
 </body>
