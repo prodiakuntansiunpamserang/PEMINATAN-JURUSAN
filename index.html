@@ -212,7 +212,14 @@ padding:15px;
 .dosen-box li{
 font-size:14px;
 }
+#countdownBox{
+padding:20px;
+}
 
+#countdown{
+font-size:28px;
+line-height:1.5;
+}
 }
 
 #countdownBox{
@@ -225,6 +232,8 @@ font-size:40px;
 font-weight:bold;
 color:#1565c0;
 margin-top:20px;
+line-height:1.4;
+word-break:keep-all;
 }
 
 </style>
@@ -733,7 +742,12 @@ let menit = Math.floor((selisih % (1000*60*60)) / (1000*60));
 let detik = Math.floor((selisih % (1000*60)) / 1000);
 
 document.getElementById("countdown").innerHTML =
-`${hari} Hari ${jam} Jam ${menit} Menit ${detik} Detik`;
+`
+${hari} Hari <br>
+${jam} Jam <br>
+${menit} Menit <br>
+${detik} Detik
+`;
 
 }
 
