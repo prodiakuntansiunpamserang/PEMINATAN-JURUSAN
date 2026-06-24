@@ -755,7 +755,14 @@ ${detik} Detik
 else if(sekarang >= bukaPortal && sekarang <= tutupPortal){
 
 document.getElementById("countdownBox").style.display = "none";
+
+if(
+document.getElementById("page2").style.display === "none" &&
+document.getElementById("page3").style.display === "none" &&
+document.getElementById("page4").style.display === "none"
+){
 document.getElementById("login").style.display = "block";
+}
 
 }
 
