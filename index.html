@@ -629,9 +629,17 @@ let total = {
   "REG C - Pajak":0
 };
 
-data.forEach(item=>{
-  if(total[item.prasyarat] != undefined){
+let kombinasiUnik = [];
+
+data.forEach(item => {
+  let key = item.nim.toString().trim() + "|" + item.prasyarat;
+
+  if(
+    total[item.prasyarat] != undefined &&
+    !kombinasiUnik.includes(key)
+  ){
     total[item.prasyarat]++;
+    kombinasiUnik.push(key);
   }
 });
 
@@ -647,10 +655,8 @@ document.getElementById("kuota").innerHTML = `
 <p>REG C - Pajak : ${total["REG C - Pajak"]}/52</p>
 `;
 
-})
-.catch(err => console.log(err));
+});
 }
-
 function kirimData(){
 
 let data = {
@@ -698,7 +704,21 @@ fetch("https://script.google.com/macros/s/AKfycbx7Bv6Em67fepU7_6b4GlHPxmauPQizFj
     return;
   }
 
-  let jumlah = allData.filter(item => item.prasyarat == data.prasyarat).length;
+  let uniqueNim = [];
+
+let jumlah = allData.filter(item => {
+  let key = item.nim.toString().trim() + "|" + item.prasyarat;
+
+  if (
+    item.prasyarat == data.prasyarat &&
+    !uniqueNim.includes(key)
+  ) {
+    uniqueNim.push(key);
+    return true;
+  }
+
+  return false;
+}).length;
 
   if(jumlah >= batas[data.prasyarat]){
     alert("Kuota penuh");
