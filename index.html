@@ -450,7 +450,7 @@ border-left:5px solid #1565c0;
 
 <br><br>
 
-<button onclick="kirimData()">
+<button id="submitBtn" onclick="this.disabled=true;kirimData()">
 KIRIM DATA
 </button>
 
@@ -659,6 +659,14 @@ document.getElementById("kuota").innerHTML = `
 }
 function kirimData(){
 
+let btn = document.getElementById("submitBtn");
+
+// matikan tombol
+btn.disabled = true;
+btn.innerHTML = "⏳ Mengirim...";
+btn.style.opacity = "0.7";
+btn.style.cursor = "not-allowed";
+
 let data = {
   timestamp: new Date().toLocaleString("id-ID"),
   nama: document.getElementById("formNama").value,
@@ -700,9 +708,14 @@ fetch("https://script.google.com/macros/s/AKfycbx7Bv6Em67fepU7_6b4GlHPxmauPQizFj
   let cekNim = allData.find(item => item.nim && item.nim == data.nim);
 
   if(cekNim){
-    alert("NIM sudah pernah submit");
-    return;
-  }
+  alert("NIM sudah pernah submit");
+
+  btn.disabled = false;
+  btn.innerHTML = "KIRIM DATA";
+  btn.style.opacity = "1";
+  btn.style.cursor = "pointer";
+  return;
+}
 
   let uniqueNim = [];
 
@@ -721,9 +734,14 @@ let jumlah = allData.filter(item => {
 }).length;
 
   if(jumlah >= batas[data.prasyarat]){
-    alert("Kuota penuh");
-    return;
-  }
+  alert("Kuota penuh");
+
+  btn.disabled = false;
+  btn.innerHTML = "KIRIM DATA";
+  btn.style.opacity = "1";
+  btn.style.cursor = "pointer";
+  return;
+}
 
   return fetch("https://script.google.com/macros/s/AKfycbx7Bv6Em67fepU7_6b4GlHPxmauPQizFjz6YdAeWZMa91liXYQgCM57bvdhE0KlhnKW/exec", {
     method: "POST",
@@ -743,6 +761,11 @@ let jumlah = allData.filter(item => {
 })
 .catch(err => {
   console.error(err);
+
+  btn.disabled = false;
+  btn.innerHTML = "KIRIM DATA";
+  btn.style.opacity = "1";
+  btn.style.cursor = "pointer";
 });
 }
 
